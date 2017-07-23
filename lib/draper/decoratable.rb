@@ -70,7 +70,7 @@ module Draper
       #
       # @return [Class] the inferred decorator class.
       def decorator_class
-        prefix = respond_to?(:model_name) ? model_name : name
+        prefix = respond_to?(:model_name) ? model_name.instance_variable_get("@klass").name : name
         decorator_name = "#{prefix}Decorator"
         decorator_name.constantize
       rescue NameError => error
